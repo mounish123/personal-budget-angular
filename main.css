@@ -10,6 +10,8 @@ header .skip-link{
     background-color: #ddda9f;
     font-size: 1.4em;
     display : block;
+    margin : 10px;
+    padding-top: 10px;
 }
 header .menu {
     width: 100%;
