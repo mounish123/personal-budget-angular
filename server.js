@@ -1,6 +1,13 @@
 const express = require('express');
+// const fs = require('fs');
+// const path = require('path');
+
+
 const app = express();
 const port = 3000;
+
+const data = require('./data.json');
+// const jsonFilePath = path.join('C:/Users/mouni/personal-budget/server.js', './data.json');
 
 app.use('/',express.static('public'));
 
@@ -25,7 +32,9 @@ app.get('/hello',(req,res) =>{
     res.send('Hello world');
 });
 app.get('/budget',(req,res) =>{
-    res.json(budget);
+    res.json(data);
+    // const jsonData = JSON.parse(data);
+    // res.json(jsonData);
 })
 
 app.listen(port, () => {
