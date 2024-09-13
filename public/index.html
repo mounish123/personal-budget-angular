@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personal Budget</title>
     <meta name="description" content="track and manage your budget for FREE">
-    <link rel="stylesheet" href="/pb/reset.css">
-    <link rel="stylesheet" href="/pb/main.css">
+    <link rel="stylesheet" href="/reset.css">
+    <link rel="stylesheet" href="/main.css">
 </head>
 <body>
 <header>
@@ -88,9 +88,9 @@
             </div>
     
             <div class="text-box">
-                <h2>Free</h2>
+                <h2>Chart</h2>
                 <p>
-                    This app is free!!! And you are the only one holding your data!
+                    <canvas id="myChart" width = "400" height = "400"></canvas>
                 </p>
             </div>
 
@@ -103,6 +103,48 @@
             All rights reserved &copy; Fabio Nolasco
         </div>
     </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" integrity="sha512-CQBWl4fJHWbryGE+Pc7UAxWMUMNMWzWxF4SQo9CgkJIN1kx6djDQZjh3Y8SZ1d+6I+1zze6Z7kHXO7q3UyZAWw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script  src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.7/axios.min.js" integrity="sha512-DdX/YwF5e41Ok+AI81HI8f5/5UsoxCVT9GKYZRIzpLxb8Twz4ZwPPX+jQMwMhNQ9b5+zDEefc+dcvQoPWGNZ3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- <script  src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.min.js" integrity="sha512-L0Shl7nXXzIlBSUUPpxrokqq4ojqgZFQczTYlGjzONGTDAcLremjwaWv5A+EDLnxhQzY5xUZPWLOLqYRkY0Cbw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+<script>
+    var dataSource = {
+        datasets: [
+            {
+                data: [30, 350, 90],
+                backgroundColor: [
+                    '#ffcdf6',
+                    '#ff6384',
+                    '#36a2eb',
+                ],
+            }
+        ],
+        labels: [
+            'Eat out',
+            'Rent',
+            'Groceries',
+        ]
+    };
+    function createChart() {
+        var ctx = document.getElementById("myChart").getContext("2d");
+        new Chart(ctx, {
+            type: 'pie',
+            data: dataSource
+        });
 
+    }
+    function getBudget(){
+        axios.get('/budget')
+        .then(function (res){
+            console.log(res.data);
+            for(var i = 0 ; i < res.data.myBudget.length; i++ ){
+                dataSource.datasets[0].data[i] = res.data.myBudget[i].budget;
+                dataSource.labels[i] = res.data.myBudget[i].title;
+            }
+            createChart();
+        }); 
+        
+    }
+    getBudget();
+</script>
 </body>
 </html>
