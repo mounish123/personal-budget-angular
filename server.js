@@ -35,7 +35,10 @@ app.get('/budget',(req,res) =>{
     res.json(data);
     // const jsonData = JSON.parse(data);
     // res.json(jsonData);
-})
+});
+app.get('/bar-chart-data', (req, res) => {
+    res.json(data.barChartData);
+});
 
 app.listen(port, () => {
 console.log(`Example app listening at http://localhost:${port}`)
