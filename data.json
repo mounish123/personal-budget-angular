@@ -31,12 +31,12 @@
     ],
 
     "barChartData":[
-        {"name": "A", "value": 30},
-        {"name": "B", "value": 80},
-        {"name": "C", "value": 45},
-        {"name": "D", "value": 60},
-        {"name": "E", "value": 20},
-        {"name": "F", "value": 90},
-        {"name": "G", "value": 55}
+        {"name": "Sub1", "value": 30},
+        {"name": "Sub2", "value": 80},
+        {"name": "Sub3", "value": 45},
+        {"name": "Sub4", "value": 60},
+        {"name": "Sub5", "value": 20},
+        {"name": "Sub6", "value": 90},
+        {"name": "Sub7", "value": 55}
     ]
 }
