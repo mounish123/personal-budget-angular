@@ -1,4 +1,7 @@
+// Budget API
+
 const express = require('express');
+const cors = require('cors');
 // const fs = require('fs');
 // const path = require('path');
 
@@ -9,7 +12,7 @@ const port = 3000;
 const data = require('./data.json');
 // const jsonFilePath = path.join('C:/Users/mouni/personal-budget/server.js', './data.json');
 
-app.use('/',express.static('public'));
+app.use(cors());
 
 const budget = { 
     myBudget: [
@@ -28,9 +31,9 @@ const budget = {
 ]
 };
 
-app.get('/hello',(req,res) =>{
-    res.send('Hello world');
-});
+// app.get('/hello',(req,res) =>{
+    // res.send('Hello world');
+// });
 app.get('/budget',(req,res) =>{
     res.json(data);
     // const jsonData = JSON.parse(data);
